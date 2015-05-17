@@ -3,28 +3,15 @@ layout: page
 title: About
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+Hey! This site showcases the work of Jon Reid, a Senior Game Developer working in London UK. I've worked on a number of client based projects for Preloaded, a games with purpose studio.
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+I'm primarily a Unity developer, but I've done a few games with Flash too, back when it was cool. I also make Unity tools, its very extendable, and customising a game engine to your needs is pretty great.
 
-There are currently two themes built on Poole:
+I've made games for a number of platforms, including:
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+* Mobile
+* Tablet
+* Web
+* Installations
 
-Learn more and contribute on [GitHub](https://github.com/poole).
-
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.org), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+While making games for clients at Preloaded, I've also made a few games for myself at game jams and just for fun! You can [follow me on Twitter](https://twitter.com/_jonreid), where I showcase some of my more smaller ideas, or just talk about games I'm playing.

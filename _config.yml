@@ -1,15 +1,15 @@
 # Dependencies
 markdown:         redcarpet
-pygments:         true
+highlighter:         true
 
 # Permalinks
 permalink:        pretty
 
 # Setup
-title:            Lanyon
-tagline:          'A Jekyll theme'
-description:      'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:              http://lanyon.getpoole.com
+title:            Jons games
+tagline:          Some wild code appeared!
+description:      Game developer in London, UK. Currently making extensive use of <a href="https://unity3d.com/" target="_blank">Unity.</a> I'm on twitter <a href="https://twitter.com/_jonreid" target="_blank">@_jonreid</a>.
+url:              http://jonsgames.com
 
 author:
   name:           'Mark Otto'
@@ -22,3 +22,30 @@ version:          2.0.0
 
 github:
   repo:           https://github.com/poole/lanyon
+
+projects:
+- name: bubble trubble
+  image: /public/images/bubbletrubble.png
+  page: /projects/bubbletrubble
+- name: Honey Giants
+  image: /public/images/honeygiants.png
+  page: /projects/honeygiants
+- name: Mesh Tools
+  image: /public/images/meshtools.png
+  page: /projects/meshtools
+- name: Rugged Rovers
+  image: /public/images/ruggedrovers.png
+  page: /projects/ruggedrovers
+- name: Scaffolding
+  image: /public/images/scaffolding.png
+  page: /projects/scaffolding
+- name: Love Conncetion
+  image: /public/images/loveconnection.png
+  page: /projects/loveconnection
+- name: Story Cards
+  image: /public/images/storycards.png
+  page: /projects/storycards
+- name: TyrAnt
+  image: /public/images/tyrant.png
+  page: /projects/tyrant
+
