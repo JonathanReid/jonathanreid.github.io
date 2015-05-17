@@ -27,6 +27,9 @@ projects:
 - name: bubble trubble
   image: /public/images/bubbletrubble.png
   page: /projects/bubbletrubble
+- name: SNOMAN
+  image: /public/images/snoman.png
+  page: /projects/snoman
 - name: Honey Giants
   image: /public/images/honeygiants.png
   page: /projects/honeygiants
@@ -48,4 +51,9 @@ projects:
 - name: TyrAnt
   image: /public/images/tyrant.png
   page: /projects/tyrant
-
+- name: Lets click and makeup
+  image: /public/images/letsclickandmakeup.png
+  page: /projects/letsclickandmakeup
+- name: Atmosfeast
+  image: /public/images/atmosfeast.png
+  page: /projects/atmosfeast

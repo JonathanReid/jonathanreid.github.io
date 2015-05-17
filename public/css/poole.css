@@ -232,6 +232,25 @@ img {
   max-width: 100%;
   margin: 0 0 1rem;
   border-radius: 5px;
+ 
+}
+
+img.project-image{
+  -webkit-transition: border-radius 0.2s ease;
+     -moz-transition: border-radius 0.2s ease;
+       -o-transition: border-radius 0.2s ease;
+      -ms-transition: border-radius 0.2s ease;
+          transition: border-radius 0.2s ease;
+
+}
+
+img.project-image:hover{
+border-radius: 40px;
+  -webkit-transition: border-radius 0.5s cubic-bezier(0.88, -0.45, 0.465, 1.55);
+     -moz-transition: border-radius 0.5s cubic-bezier(0.88, -0.45, 0.465, 1.55);
+       -o-transition: border-radius 0.5s cubic-bezier(0.88, -0.45, 0.465, 1.55);
+      -ms-transition: border-radius 0.5s cubic-bezier(0.88, -0.45, 0.465, 1.55);
+          transition: border-radius 0.5s cubic-bezier(0.88, -0.45, 0.465, 1.55);
 }
 
 /* Tables */
