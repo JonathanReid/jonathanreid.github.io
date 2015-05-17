@@ -5,14 +5,50 @@ role: Developer
 platform: Unity Library
 ---
 
-<iframe src="//player.vimeo.com/video/91634278?title=0&amp;byline=0&amp;portrait=0&amp;color=24bddf" width="720" height="400" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" id="fitvid224006"></iframe>
+<a href="https://github.com/JonathanReid/MeshTools">![Mesh Tools]({{ site.baseurl }}/public/images/meshtools/image1.jpg "Mesh Tools")</a>
  
-[TyrAnt](http://preloaded.com/games/tyrant/) is an ant-based Real Time Strategy game. It teaches the player how ants eat, communicate and reproduce within a diverse and delicately balanced ecosystem. Players decide how best to develop their colony of ‘Foragers’, who collect valuable food resource, and Soldiers, who defend territory. A documentary-style voiceover and visual treatment adds drama and depth by narrating the story of the colony’s struggle.
+[Mesh Tools](https://github.com/JonathanReid/MeshTools) is a Unity library to help easily create 2D meshes from a set of points. This library came out of Rugged Rovers as I needed a way to build various 2D mesh types easily, and has since gone on to be used in SNOMAN, bubble trubble and other projects.
 
-As players explore rich and detailed environments they encounter Soldier ants from competing colonies, threatening the player’s chance of reaching the all-important nuptial flight. Genetic mutations see each ant caste become increasingly specialised and every new game starts in a new nest with the next generation of ants. Mastering the game means mastering the true-to-life dynamics of the colony. For example, as ants navigate between leaves, they lay a pheromone trail so other ants travel more efficiently along the same route.
+It facilitates the creation of:
 
-My development role consisted of implementing UI across all screens, implementing the nodal navigation system, AI and camerawork. I have since gone on to lead development of product updates.
+* 2D Polygons
+* Lines
+* Splines
+* Circles - with percentage fill
+* Donuts - with percentage fill
+
+Some basic syntax for creating a 2D Polygon with Mesh Tools:
+{% highlight c# %}
+private void BuildPolygon(List<Vector2> points)
+{
+	Mesh2D.Instance.Build(points, HandleShapeBuilt, Color.white);
+}
+
+private void HandleShapeBuilt(Shape shape)
+{
+	//shape has been constructed
+	//polygon details contained within shape.
+}
+{% endhighlight %}
+
+For lines, its very similar, but it doesnt have a callback.
+{% highlight c# %}
+private void BuildLine(List<Vector2> points)
+{
+	Shape shape = Line2D.Instance.Build(points, LineWidth, Color.white, null);
+}
+{% endhighlight %}
+
+And for circles, its just the same.
+{% highlight c# %}
+private void BuildCircle(float radius)
+{
+	Shape shape = Circle2D.Instance.Build(radius, 20);
+}
+{% endhighlight %}
+
+All shapes return the Shape class, which help you track, and rebuild your geometry if you need to.
 
 <center>
-[Find out more about TyrAnt](http://preloaded.com/games/tyrant/) 
+[Download Mesh Tools on GitHub](https://github.com/JonathanReid/MeshTools) 
 </center>
