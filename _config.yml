@@ -60,3 +60,6 @@ projects:
 - name: Atmosfeast
   image: /public/images/atmosfeast.png
   page: /projects/atmosfeast
+- name: Spaced Out
+  image: /public/images/spacedout.png
+  page: /projects/spacedout
