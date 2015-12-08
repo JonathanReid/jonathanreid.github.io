@@ -14,7 +14,6 @@ window.onload = function() {
     var dropZone;
     var graphics;
     var body;
-    var scale = 0.2;
     var clearButton;
     var addWheelButton;
     var makePhysicsItem;
@@ -78,6 +77,9 @@ window.onload = function() {
         cursors = game.input.keyboard.createCursorKeys();
 
         AddNextStepButtons();
+
+        var caption = game.add.text(5, 70, 'Draw a car and attach wheels. Left/right arrow keys to move.', { fill: '#ffffff', font: '14pt Arial' });
+        caption.fixedToCamera = true;
     }
 
     function DrawLine(pointer)
