@@ -17,25 +17,17 @@
     <button id="audioButton" onclick="Next()">Next</button>
 
 
-    <p> v0.0.7</p>
+    <p> v0.0.8</p>
     <script type="text/javascript">      
       
       function Dot() {
-        startTone(16000);
-        window.setTimeout(StartLateTone,100);
+        startTone(836);
         window.setTimeout(stop, 200);
       }
 
       function Dash() {
-        startTone(16000);
-        window.setTimeout(StartLateTone,100);
+        startTone(839);
         window.setTimeout(stop, 600);
-      }
-
-      function StartLateTone()
-      {
-        stop();
-        startTone(836);
       }
 
       function Next() {
