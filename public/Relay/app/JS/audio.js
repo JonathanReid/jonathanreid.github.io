@@ -37,8 +37,8 @@ function startTone( frequency )
     // First we should cancel any previous scheduled events that might interfere.
     amp.gain.cancelScheduledValues(now);
     // Anchor beginning of ramp at current value.
-    amp.gain.setValueAtTime(amp.gain.value, now);
-    amp.gain.linearRampToValueAtTime(0.5, audioContext.currentTime + 0.01);
+    amp.gain.setValueAtTime(0.5, now);
+    // amp.gain.linearRampToValueAtTime(0.5, audioContext.currentTime + 0.01);
     
     writeMessageToID( "soundStatus", "<p>Play tone at frequency = " + frequency  + "</p>");
 }
