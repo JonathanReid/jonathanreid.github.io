@@ -22,14 +22,19 @@
       
       function Dot() {
         startTone(16000);
-        startTone(836);
+        window.setTimeout(StartLateTone,40);
         window.setTimeout(stop, 200);
       }
 
       function Dash() {
         startTone(16000);
-        startTone(836);
+        window.setTimeout(StartLateTone,40);
         window.setTimeout(stop, 600);
+      }
+
+      function StartLateTone()
+      {
+        startTone(836);
       }
 
       function Next() {
