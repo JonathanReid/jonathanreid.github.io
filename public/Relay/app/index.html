@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Audio Write Example</title>
+    <script src="JS/webaudio_tools.js"></script>
+    <script src="JS/audio.js"></script>
+    <link rel="stylesheet" type="text/css" href="JS/style.css">
+  </head>
+  <body>
+    <button id="audioButton" onclick="Dot()">Dot</button>
+    <br>
+    <br>
+    <button id="audioButton" onclick="Dash()">Dash</button>
+    <br>
+    <br>
+    <button id="audioButton" onclick="Next()">Next</button>
+
+    <script type="text/javascript">      
+      
+      function Dot() {
+        startTone(836);
+        window.setTimeout(stop, 200);
+      }
+
+      function Dash() {
+        startTone(836);
+        window.setTimeout(stop, 600);
+      }
+
+      function Next() {
+        startTone(16000);
+        window.setTimeout(stop, 100);
+      }
+
+      function stop() {
+        stopTone();
+      }
+  </script>
+  </body>
+</html>
