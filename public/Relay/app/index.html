@@ -8,17 +8,18 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   </head>
   <body>
-    <p id="audioButton" onmousedown="Dot()" onmouseup="stop()">Dot</p>
+    <p id="audioButton">Dot</p>
     <br>
     <br>
-    <p id="audioButton" onmousedown="Dash()" onmouseup="stop()">Dash</p>
-    <br>
-    <br>
-    <p id="audioButton" onmousedown="Next()" onmouseup="stop()">Next</p>
+    <p id="audioButton">Next</p>
 
 
-    <p> v0.0.14</p>
+    <p> v0.0.15</p>
     <script type="text/javascript">  
+
+      window.onload = function() {
+        $("#audioButton").bind('touchstart', Dot()).bind('touchend', stop());
+      }
 
       var pressed = false;    
       
