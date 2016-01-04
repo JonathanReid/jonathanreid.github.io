@@ -4,6 +4,7 @@
     <title>JavaScript Audio Write Example</title>
     <script src="JS/webaudio_tools.js"></script>
     <script src="JS/audio.js"></script>
+    <script src="JS/jquery.mobile.custom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="JS/style.css">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   </head>
@@ -14,12 +15,20 @@
     <p id="audioButton">Next</p>
 
 
-    <p> v0.0.15</p>
+    <p> v0.0.16</p>
     <script type="text/javascript">  
 
-      window.onload = function() {
-        $("#audioButton").bind('touchstart', Dot()).bind('touchend', stop());
-      }
+      $(function(){ // or replace this with window.onload for that matter
+      // Your code here, e.g.
+      $("#audioButton").on("vmousedown", function() { 
+        Dot();
+      }).on("vmouseup", function() 
+      {
+        stop();
+      });
+      // CAUTION: this won't work (see note below):
+      // $("#button_img").vmousedown(function(){/*whatever*/}); // WON'T WORK
+    });
 
       var pressed = false;    
       
