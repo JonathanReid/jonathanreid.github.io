@@ -18,10 +18,16 @@
 
 
     <p> v0.0.13</p>
-    <script type="text/javascript">      
+    <script type="text/javascript">  
+
+      var pressed = false;    
       
       function Dot() {
-        startTone(836);
+        if(!pressed)
+        {
+          startTone(836);
+          pressed = true;
+        }
         // window.setTimeout(stop, 200);
       }
 
@@ -31,11 +37,16 @@
       }
 
       function Next() {
-        startTone(16000);
+        if(!pressed)
+        {
+          startTone(16000);
+          pressed = true;
+        }
         // window.setTimeout(stop, 100);
       }
 
       function stop() {
+        pressed = false;
         stopTone();
       }
   </script>
