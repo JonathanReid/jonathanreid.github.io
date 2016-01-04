@@ -8,26 +8,24 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   </head>
   <body>
-    <button id="audioButton" onmousedown="Dot()" onmouseup="stop()">Dot</button>
+    <p id="audioButton" onmousedown="Dot()" onmouseup="stop()">Dot</p>
     <br>
     <br>
-    <button id="audioButton" onmousedown="Dash()" onmouseup="stop()">Dash</button>
+    <p id="audioButton" onmousedown="Dash()" onmouseup="stop()">Dash</p>
     <br>
     <br>
-    <button id="audioButton" onmousedown="Next()" onmouseup="stop()">Next</button>
+    <p id="audioButton" onmousedown="Next()" onmouseup="stop()">Next</p>
 
 
     <p> v0.0.13</p>
     <script type="text/javascript">      
       
       function Dot() {
-        stopTone();
         startTone(836);
         // window.setTimeout(stop, 200);
       }
 
       function Dash() {
-        stopTone();
         startTone(842);
         // window.setTimeout(stop, 400);
       }
