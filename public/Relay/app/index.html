@@ -17,20 +17,16 @@
     <p id="audioButton">Next</p>
 
 
-    <p> v0.0.20</p>
+    <p> v0.0.21</p>
     <script type="text/javascript">  
 
-      $(function(){ // or replace this with window.onload for that matter
-      // Your code here, e.g.
-      $("#audioButton").on("vmousedown", function() { 
+      document.body.addEventListener('touchstart', function(e){
         Dot();
-      }).on("vmouseup", function() 
-      {
+      }, false)
+
+      document.body.addEventListener('touchend', function(e){
         stop();
-      });
-      // CAUTION: this won't work (see note below):
-      // $("#button_img").vmousedown(function(){/*whatever*/}); // WON'T WORK
-    });
+      }, false)
 
       var pressed = false;    
       
