@@ -1,62 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JavaScript Audio Write Example</title>
-    <script src="JS/jquery-2.1.4.min.js" type="text/javascript"></script>
-
-    <script src="JS/webaudio_tools.js"></script>
-    <script src="JS/audio.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="JS/style.css">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>WebSocket Echo Test</title>
+    <script type="text/javascript" src="js/echotest.js">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </script>
   </head>
   <body>
-    <p id="audioButton">Dot</p>
-    <br>
-    <br>
-    <p id="audioButton">Next</p>
+    
 
+    <div id="key"></div>
 
-    <p> v0.0.21</p>
+    <div id="next"></div>
+
+    <div id="overlay"></div>
+
     <script type="text/javascript">  
 
-      document.body.addEventListener('touchstart', function(e){
-        Dot();
-      }, false)
+      document.getElementById("key").addEventListener('touchstart', Down, false);
+      document.getElementById("key").addEventListener("mousedown", Down, false);
 
-      document.body.addEventListener('touchend', function(e){
-        stop();
-      }, false)
+      document.getElementById("key").addEventListener("mouseup", Up, false);
+      document.getElementById("key").addEventListener('touchend', Up, false);
 
-      var pressed = false;    
-      
-      function Dot() {
-        if(!pressed)
-        {
-          startTone(836);
-          pressed = true;
-        }
-        // window.setTimeout(stop, 200);
-      }
+      document.getElementById("next").addEventListener("mousedown", Next, false);
+      document.getElementById("next").addEventListener('touchstart', Next, false);
 
-      function Dash() {
-        startTone(842);
-        // window.setTimeout(stop, 400);
-      }
-
-      function Next() {
-        if(!pressed)
-        {
-          startTone(16000);
-          pressed = true;
-        }
-        // window.setTimeout(stop, 100);
-      }
-
-      function stop() {
-        pressed = false;
-        stopTone();
-      }
-  </script>
+      </script>
   </body>
 </html>
