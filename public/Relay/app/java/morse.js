@@ -120,7 +120,7 @@ function SetIP(ip)
 
           sock.onopen = function (e) {
             socketConnections.push(sock);
-            sock.Send("Ping");
+            sock.send("Ping");
 
           };
 
