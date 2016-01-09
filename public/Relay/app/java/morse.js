@@ -119,7 +119,7 @@ function SetIP(ip)
 function TryConnectToIP(ip)
 {
   url = "ws://"+ip+":4649/Morse";
-  console.log(url);
+  // console.log(url);
 
   var sock = new WebSocket(url);
 
@@ -131,7 +131,7 @@ function TryConnectToIP(ip)
   // }, 3500);
 
   sock.onopen = function (e) {
-    // socketConnections.push(sock);
+    socketConnections.push(sock);
     console.log("send ping to " + sock.url);
     sock.send("Ping");
     
@@ -141,6 +141,15 @@ function TryConnectToIP(ip)
     if(e.data == "Pong")
     {
       console.log("connected to  " + ip);
+
+      //this will just connect to the first one to respond. Need to key it in with a unique ID provided by user.
+      for(var i = 0; i < socketConnections.length; i++)
+        {
+          if(socketConnections[i].url != sock.url)
+          {
+            socketConnections[i].close();
+          }
+        }
     }
   };
 }
