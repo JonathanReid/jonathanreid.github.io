@@ -121,7 +121,7 @@ function SetIP(ip)
 
           sock.onopen = function (e) {
             socketConnections.push(sock);
-            console.log("send ping");
+            console.log("send ping to " + ip);
             sock.send("Ping");
             
           };
