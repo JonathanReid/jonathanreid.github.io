@@ -6,55 +6,170 @@
  * Copyright (c) 2012 Kaazing Corporation.
  */
 
-var url = "ws://127.0.0.1:4649/Morse";
+var url = "ws://localhost:4649/Morse";
 //var url = "wss://localhost:5963/Echo";
 var output;
 var overlay;
 
-function init () {
+window.addEventListener ("load", Init, false);
+
+function Init () {
   output = document.getElementById ("output");
   overlay = document.getElementById ("overlay");
-  findServers();
+  //findServers();
+  // DoWebSocket();
+  GetLocalIP(SetIP);
 }
 
-function doWebSocket () {
+function GetLocalIP(callback)
+{
+    var ip_dups = {};
+
+    //compatibility for firefox and chrome
+    var RTCPeerConnection = window.RTCPeerConnection
+        || window.mozRTCPeerConnection
+        || window.webkitRTCPeerConnection;
+    var useWebKit = !!window.webkitRTCPeerConnection;
+
+    //bypass naive webrtc blocking using an iframe
+    if(!RTCPeerConnection){
+        //NOTE: you need to have an iframe in the page right above the script tag
+        //
+        //<iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
+        //<script>...getIPs called in here...
+        //
+        var win = iframe.contentWindow;
+        RTCPeerConnection = win.RTCPeerConnection
+            || win.mozRTCPeerConnection
+            || win.webkitRTCPeerConnection;
+        useWebKit = !!win.webkitRTCPeerConnection;
+    }
+
+    //minimal requirements for data connection
+    var mediaConstraints = {
+        optional: [{RtpDataChannels: true}]
+    };
+
+    var servers = {iceServers: [{urls: "stun:stun.services.mozilla.com"}]};
+
+    //construct a new RTCPeerConnection
+    var pc = new RTCPeerConnection(servers, mediaConstraints);
+
+    function handleCandidate(candidate){
+        //match just the IP address
+        var ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/
+        var ip_addr = ip_regex.exec(candidate)[1];
+
+        //remove duplicates
+        if(ip_dups[ip_addr] === undefined)
+            callback(ip_addr);
+
+        ip_dups[ip_addr] = true;
+    }
+
+    //listen for candidate events
+    pc.onicecandidate = function(ice){
+
+        //skip non-candidate events
+        if(ice.candidate)
+            handleCandidate(ice.candidate.candidate);
+    };
+
+    //create a bogus data channel
+    pc.createDataChannel("");
+
+    //create an offer sdp
+    pc.createOffer(function(result){
+
+        //trigger the stun server request
+        pc.setLocalDescription(result, function(){}, function(){});
+
+    }, function(){});
+
+    //wait for a while to let everything done
+    setTimeout(function(){
+        //read candidate info from local description
+        var lines = pc.localDescription.sdp.split('\n');
+
+        lines.forEach(function(line){
+            if(line.indexOf('a=candidate:') === 0)
+                handleCandidate(line);
+        });
+    }, 1000);
+}
+
+var socketConnections = [];
+function SetIP(ip)
+{
+    if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/))
+    {
+       var split = ip.split(".");
+       
+
+        for(var i = 0; i < 255; i++)
+        {
+
+          ip = split[0] + "." + split[1] + "." + split[2] + "." + i;
+          url = "ws://"+ip+":4694/Morse";
+          console.log(url);
+
+          var sock = new WebSocket(url);
+
+          var timer = setTimeout(function() {
+            console.log(url + " timeout");
+            sock.close();
+          }, 3500);
+
+          sock.onopen = function (e) {
+            socketConnections.push(sock);
+          };
+        }
+    }
+}
+
+function DoWebSocket () {
   websocket = new WebSocket (url);
 
+  console.log("connecting");
+
   websocket.onopen = function (e) {
-    onOpen (e);
+    OnOpen (e);
   };
 
   websocket.onmessage = function (e) {
-    onMessage (e);
+    OnMessage (e);
   };
 
   websocket.onerror = function (e) {
-    onError (e);
+    OnError (e);
   };
 
   websocket.onclose = function (e) {
-    onClose (e);
+    OnClose (e);
   };
 }
 
-function onOpen (event) {
-  send ("Connected");
+function OnOpen (event) {
+  Send ("Connected");
+
   overlay.style.display = "none";
 }
 
-function onMessage (event) {
+function OnMessage (event) {
   // websocket.close ();
+  console.log(event.data);
 }
 
-function onError (event) {
+function OnError (event) {
+  console.log("error " + event.data);
   websocket.close ();
 }
 
-function onClose (event) {
-
+function OnClose (event) {
+  console.log("close " + event.data);
 }
 
-function send (message) {
+function Send (message) {
   websocket.send (message);
 }
 
@@ -71,11 +186,15 @@ function Next()
   websocket.send ("2");
 }
 
-function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
+function FindServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
+
+// can replace this by mass connecting to all at once, store an array of any servers that returned a connection,
+// and then use a unique key to lock the connection to the server. This mitigates connecting to the wrong game instance.
+
     var ipCurrent = +ipLow, numInFlight = 0, servers = [];
     ipHigh = +ipHigh;
 
-    function tryOne(ip) {
+    function TryOne(ip) {
         ++numInFlight;
         var address = "ws://" + ipBase + ip + ":" + port +"/Morse";
         var socket = new WebSocket(address);
@@ -85,7 +204,7 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
             socket = null;
             s.close();
             --numInFlight;
-            next();
+            Next();
         }, timeout);
         socket.onopen = function() {
             if (socket) {
@@ -94,7 +213,7 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
                 servers.push(socket.url);
                 --numInFlight;
                 cb(servers);
-                // next();
+                // Next();
             }
         };
         socket.onerror = function(err) {
@@ -102,14 +221,14 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
                 console.log(address + " error");
                 clearTimeout(timer);
                 --numInFlight;
-                next();
+                Next();
             }
         }
     }
 
-    function next() {
+    function Next() {
         while (ipCurrent <= ipHigh && numInFlight < maxInFlight) {
-            tryOne(ipCurrent++);
+            TryOne(ipCurrent++);
         }
         // if we get here and there are no requests in flight, then
         // we must be done
@@ -119,14 +238,13 @@ function findServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
         }
     }
 
-    next();
+    Next();
 }
 
-findServers(4649, "192.168.0.", 1, 255, 20, 4000, function(servers) {
+/*findServers(4649, "192.168.0.", 1, 255, 20, 4000, function(servers) {
     
     url = servers[0];
     console.log(url);
     doWebSocket ();
 });
-
-window.addEventListener ("load", init, false);
+*/
