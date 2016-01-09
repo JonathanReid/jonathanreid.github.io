@@ -17,8 +17,8 @@ function Init () {
   output = document.getElementById ("output");
   overlay = document.getElementById ("overlay");
   //findServers();
-  DoWebSocket();
-  // GetLocalIP(SetIP);
+  // DoWebSocket();
+  GetLocalIP(SetIP);
 }
 
 function GetLocalIP(callback)
@@ -110,7 +110,7 @@ function SetIP(ip)
         {
 
           ip = split[0] + "." + split[1] + "." + split[2] + "." + i;
-          url = "ws://"+ip+":4694/Morse";
+          url = "ws://"+ip+":4649/Morse";
           console.log(url);
 
           var sock = new WebSocket(url);
