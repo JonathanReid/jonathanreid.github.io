@@ -110,33 +110,26 @@ function SetIP(ip)
         {
 
           ip = split[0] + "." + split[1] + "." + split[2] + "." + i;
+          // ip = "localhost";
           url = "ws://"+ip+":4649/Morse";
 
           var sock = new WebSocket(url);
 
-          var timer = setTimeout(function() {
-            sock.close();
-          }, 3500);
+          // var timer = setTimeout(function() {
+          //   sock.close();
+          // }, 3500);
 
           sock.onopen = function (e) {
             socketConnections.push(sock);
+            console.log("send ping");
             sock.send("Ping");
-
+            
           };
 
           sock.onmessage = function (e) {
             if(e.data == "Pong")
             {
-              for(var j = socketConnections.length; j > -1 ; j--)
-              {
-                if(socketConnections[j] != sock)
-                {
-                  socketConnections[j].close();
-                  socketConnections.splice(j,1);
-                }
-              }
-
-              OnOpen(e);
+              console.log("connected to  " + ip);
             }
           };  
         }
@@ -166,8 +159,7 @@ function DoWebSocket () {
 }
 
 function OnOpen (event) {
-  Send ("Connected");
-
+  console.log("Connected");
   overlay.style.display = "none";
 }
 
