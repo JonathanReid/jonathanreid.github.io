@@ -111,32 +111,38 @@ function SetIP(ip)
 
           ip = split[0] + "." + split[1] + "." + split[2] + "." + i;
           // ip = "localhost";
-          url = "ws://"+ip+":4649/Morse";
-
-          var sock = new WebSocket(url);
-
-          var timer = setTimeout(function() {
-            if(sock)
-            {
-              sock.close();
-            }
-          }, 3500);
-
-          sock.onopen = function (e) {
-            socketConnections.push(sock);
-            console.log("send ping to " + sock.url);
-            sock.send("Ping");
-            
-          };
-
-          sock.onmessage = function (e) {
-            if(e.data == "Pong")
-            {
-              console.log("connected to  " + ip);
-            }
-          };  
+            TryConnectToIP(ip);
         }
     }
+}
+
+function TryConnectToIP(ip)
+{
+  url = "ws://"+ip+":4649/Morse";
+  console.log(url);
+
+  var sock = new WebSocket(url);
+
+  // var timer = setTimeout(function() {
+  //   if(sock)
+  //   {
+  //     sock.close();
+  //   }
+  // }, 3500);
+
+  sock.onopen = function (e) {
+    // socketConnections.push(sock);
+    console.log("send ping to " + sock.url);
+    sock.send("Ping");
+    
+  };
+
+  sock.onmessage = function (e) {
+    if(e.data == "Pong")
+    {
+      console.log("connected to  " + ip);
+    }
+  };
 }
 
 function DoWebSocket () {
