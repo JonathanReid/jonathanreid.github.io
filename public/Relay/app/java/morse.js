@@ -115,9 +115,12 @@ function SetIP(ip)
 
           var sock = new WebSocket(url);
 
-          // var timer = setTimeout(function() {
-          //   sock.close();
-          // }, 3500);
+          var timer = setTimeout(function() {
+            if(sock)
+            {
+              sock.close();
+            }
+          }, 3500);
 
           sock.onopen = function (e) {
             socketConnections.push(sock);
