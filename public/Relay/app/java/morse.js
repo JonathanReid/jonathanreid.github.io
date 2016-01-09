@@ -6,7 +6,7 @@
  * Copyright (c) 2012 Kaazing Corporation.
  */
 
-var url = "ws://localhost:4649/Morse";
+var url = "ws://192.168.43.131:4649/Morse";
 //var url = "wss://localhost:5963/Echo";
 var output;
 var overlay;
@@ -17,8 +17,8 @@ function Init () {
   output = document.getElementById ("output");
   overlay = document.getElementById ("overlay");
   //findServers();
-  // DoWebSocket();
-  GetLocalIP(SetIP);
+  DoWebSocket();
+  // GetLocalIP(SetIP);
 }
 
 function GetLocalIP(callback)
