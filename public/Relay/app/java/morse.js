@@ -10,12 +10,32 @@ var url = "ws://192.168.43.131:4649/Morse";
 //var url = "wss://localhost:5963/Echo";
 var output;
 var overlay;
+var UID;
+var connected;
+var sentUID;
+var uidInput;
+
+var sendUIDEvent = document.createEvent("Event");
+sendUIDEvent.initEvent("sendUID",true,true);
+
+var sendCloseEvent = document.createEvent("Event");
+sendCloseEvent.initEvent("sendClose",true,true);
+
+var sendNextEvent = document.createEvent("Event");
+sendNextEvent.initEvent("sendNext",true,true);
+
+var sendUpEvent = document.createEvent("Event");
+sendUpEvent.initEvent("sendUp",true,true);
+
+var sendDownEvent = document.createEvent("Event");
+sendDownEvent.initEvent("sendDown",true,true);
 
 window.addEventListener ("load", Init, false);
 
 function Init () {
   output = document.getElementById ("output");
   overlay = document.getElementById ("overlay");
+  UID = document.getElementById ("serverKey");
   //findServers();
   // DoWebSocket();
   GetLocalIP(SetIP);
@@ -99,10 +119,12 @@ function GetLocalIP(callback)
 }
 
 var socketConnections = [];
+var deviceIP;
 function SetIP(ip)
 {
     if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/))
     {
+      deviceIP = ip;
        var split = ip.split(".");
        
 
@@ -133,7 +155,7 @@ function TryConnectToIP(ip)
   sock.onopen = function (e) {
     socketConnections.push(sock);
     console.log("send ping to " + sock.url);
-    sock.send("Ping");
+    sock.send(deviceIP+":Ping");
     
   };
 
@@ -143,16 +165,70 @@ function TryConnectToIP(ip)
       console.log("connected to  " + ip);
 
       //this will just connect to the first one to respond. Need to key it in with a unique ID provided by user.
+      // display text boxes, and send out a message to server to confirm UID.
+      // also confirm with server if there is currently an ongoing connection, if so close this connection.
+      // once thats confrimed, then close any other connections.
+      // also close connection with server once app is closed etc.
+      
+    }
+
+    if(e.data == "uidMatch" && sentUID)
+    {
       for(var i = 0; i < socketConnections.length; i++)
+      {
+        if(socketConnections[i].url != sock.url)
         {
-          if(socketConnections[i].url != sock.url)
-          {
-            socketConnections[i].close();
-          }
+          console.log("closing on url " + socketConnections[i].url);
+          socketConnections[i].close();
         }
+      }
+
+      console.log("Connected");
+      connected = true;
+      // connection = sock;
+      overlay.style.display = "none";
+      UID.style.display = "none";
     }
   };
+
+  document.addEventListener('sendUID', function (e) {
+    sock.send(deviceIP+":"+uidInput);
+    console.log("Send UID event");
+  }, false);
+
+  document.addEventListener('sendClose', function (e) {
+    sock.send(deviceIP+":"+"close");
+    console.log("Send close event");
+  }, false);
+
+  document.addEventListener('sendNext', function (e) {
+    sock.send(deviceIP+":"+"2");
+    console.log("Send next event");
+  }, false);
+
+  document.addEventListener('sendUp', function (e) {
+    sock.send(deviceIP+":"+"1");
+    console.log("Send Up event");
+  }, false);
+
+  document.addEventListener('sendDown', function (e) {
+    sock.send(deviceIP+":"+"0");
+    console.log("Send Down event");
+  }, false);
+
 }
+
+
+function SendUIDToServer(uid)
+{
+  sentUID = true;
+  uidInput = uid;
+  document.dispatchEvent(sendUIDEvent);
+}
+
+window.onbeforeunload = function() {
+  document.dispatchEvent(sendCloseEvent);
+};
 
 function DoWebSocket () {
   websocket = new WebSocket (url);
@@ -199,78 +275,27 @@ function Send (message) {
   websocket.send (message);
 }
 
+//game inputs
+
 function Down()
 {
-  websocket.send ("0");
+  if(connected)
+  {
+    document.dispatchEvent(sendDownEvent);
+  }
 }
 function Up()
 {
-  websocket.send ("1");
+  if(connected)
+  {
+    document.dispatchEvent(sendUpEvent);
+  }
 }
 function Next()
 {
-  websocket.send ("2");
+  if(connected)
+  {
+    document.dispatchEvent(sendNextEvent);
+  }
 }
 
-function FindServers(port, ipBase, ipLow, ipHigh, maxInFlight, timeout, cb) {
-
-// can replace this by mass connecting to all at once, store an array of any servers that returned a connection,
-// and then use a unique key to lock the connection to the server. This mitigates connecting to the wrong game instance.
-
-    var ipCurrent = +ipLow, numInFlight = 0, servers = [];
-    ipHigh = +ipHigh;
-
-    function TryOne(ip) {
-        ++numInFlight;
-        var address = "ws://" + ipBase + ip + ":" + port +"/Morse";
-        var socket = new WebSocket(address);
-        var timer = setTimeout(function() {
-            // console.log(address + " timeout");
-            var s = socket;
-            socket = null;
-            s.close();
-            --numInFlight;
-            Next();
-        }, timeout);
-        socket.onopen = function() {
-            if (socket) {
-                console.log(address + " success");
-                clearTimeout(timer);
-                servers.push(socket.url);
-                --numInFlight;
-                cb(servers);
-                // Next();
-            }
-        };
-        socket.onerror = function(err) {
-            if (socket) {
-                console.log(address + " error");
-                clearTimeout(timer);
-                --numInFlight;
-                Next();
-            }
-        }
-    }
-
-    function Next() {
-        while (ipCurrent <= ipHigh && numInFlight < maxInFlight) {
-            TryOne(ipCurrent++);
-        }
-        // if we get here and there are no requests in flight, then
-        // we must be done
-        if (numInFlight === 0) {
-            // console.log(servers);
-            cb(servers);
-        }
-    }
-
-    Next();
-}
-
-/*findServers(4649, "192.168.0.", 1, 255, 20, 4000, function(servers) {
-    
-    url = servers[0];
-    console.log(url);
-    doWebSocket ();
-});
-*/
