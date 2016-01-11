@@ -9,7 +9,7 @@
     </script>
   </head>
   <body>
-    
+    <!--
     <div id="gameScreen">
       <div id="key"></div>
 
@@ -50,28 +50,25 @@
           <p>CONNECT</p>
         </div>
       </div>
-    </div>
+    </div>-->
+
+    <button>Send an HTTP POST request to a page and get the result back</button>
 
     <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
-    <script type="text/javascript">
 
-    console.log(myIP());
-    function myIP() {
-    if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
-    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-    xmlhttp.open("GET","http://api.hostip.info/get_html.php",false);
-    xmlhttp.send();
-
-    hostipInfo = xmlhttp.responseText.split("\n");
-
-    for (i=0; hostipInfo.length >= i; i++) {
-        ipAddress = hostipInfo[i].split(":");
-        if ( ipAddress[0] == "IP" ) return ipAddress[1];
-    }
-
-    return false;
-}
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $.post("http://jonsgames.com/Relay/app/demo_test_post.asp",
+            {
+              name: "Donald Duck",
+              city: "Duckburg"
+            },
+            function(data,status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+    });
     </script>
 
     <script src="http://jsconsole.com/remote.js?FAE031CD-74A0-46D3-AE36-757BAB262BEA"></script>

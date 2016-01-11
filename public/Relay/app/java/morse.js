@@ -145,11 +145,12 @@ function ShowGameScreen()
 
 function StartConnection()
 {
+
   document.dispatchEvent(killConnectionEvent);
 
   ShowConnectingScreen();
   console.log("start connecting");
-  TryConnectToIP("localhost");
+  // TryConnectToIP("localhost");
   allowingConnections = true;
 
   setTimeout(CouldntFindConnection, 60000);
