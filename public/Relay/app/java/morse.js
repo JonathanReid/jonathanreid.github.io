@@ -152,7 +152,7 @@ function StartConnection()
   TryConnectToIP("localhost");
   allowingConnections = true;
 
-  setTimeout(CouldntFindConnection, 10000);
+  setTimeout(CouldntFindConnection, 60000);
 }
 
 function CouldntFindConnection()
@@ -281,6 +281,7 @@ function TryConnectToIP(ip)
         console.log("send ping to " + sock.url);
         console.log("connected? " + connected);
         sock.send(PING_MESSAGE+":");
+        foundServer = true;
       }
       else
       {
