@@ -350,12 +350,6 @@ function TryConnectToIP(ip)
       }
     }
 
-    sock.onclose = function (e)
-    {
-      foundServer = false;
-      connected = false;
-    }
-
     document.addEventListener('kill', function (e) {
       if(sock)
       {
@@ -365,12 +359,12 @@ function TryConnectToIP(ip)
     }, false);
 
     document.addEventListener('sendUID', function (e) {
-      sock.send(uidInput+":");
+      
       if(foundServer)
       {
         if(sock)
         {
-          
+          sock.send(uidInput+":");    
           console.log("Send UID event");
         }
       }
