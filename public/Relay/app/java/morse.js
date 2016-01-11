@@ -152,7 +152,7 @@ function StartConnection()
   TryConnectToIP("localhost");
   allowingConnections = true;
 
-  setTimeout(CouldntFindConnection, 5000);
+  setTimeout(CouldntFindConnection, 1000);
 }
 
 function CouldntFindConnection()
