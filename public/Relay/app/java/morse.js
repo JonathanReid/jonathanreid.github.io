@@ -265,6 +265,7 @@ function TryConnectToIP(ip)
 {
     var sock = new WebSocket("ws://"+ip+":4649/Morse");
 
+    console.log("trying ip " + ip);
     setTimeout(function()
       {
         if(sock && !foundServer)
