@@ -273,6 +273,12 @@ function TryConnectToIP(ip)
           sock.close();
           sock = null;
         }
+
+        if(ip == "localhost")
+        {
+          GetLocalIP(SetIP);
+        }
+      
       }, 3000);
 
     sock.onopen = function (e) {
