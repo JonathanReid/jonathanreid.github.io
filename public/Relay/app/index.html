@@ -54,11 +54,24 @@
 
     <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
     <script type="text/javascript">
-    (function() {
-      $.getJSON('getip.php', function(data){
-        alert('Your ip is: ' +  data.ip);
-      });
-    })();
+
+    console.log(myIP());
+    function myIP() {
+    if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
+    else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+    xmlhttp.open("GET","http://api.hostip.info/get_html.php",false);
+    xmlhttp.send();
+
+    hostipInfo = xmlhttp.responseText.split("\n");
+
+    for (i=0; hostipInfo.length >= i; i++) {
+        ipAddress = hostipInfo[i].split(":");
+        if ( ipAddress[0] == "IP" ) return ipAddress[1];
+    }
+
+    return false;
+}
     </script>
 
     <script src="http://jsconsole.com/remote.js?FAE031CD-74A0-46D3-AE36-757BAB262BEA"></script>
