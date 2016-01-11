@@ -534,7 +534,7 @@ function CheckUID4()
   }
   else
   {
-    GetUID()
+    GetUID();
   }
 }
 
