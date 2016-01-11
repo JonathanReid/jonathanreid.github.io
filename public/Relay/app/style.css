@@ -2,12 +2,62 @@ body{
 	margin: 0;
 }
 
-#overlay
+#introScreen
 {
 	width: 100%;
 	height: 100%;
 	background-color: #000;
-	opacity: 0.5;
+	position: absolute;
+}
+
+#connectingScreen
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+	color:#fff;
+}
+
+#failedConnectionScreen
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+}
+
+#pairingScreen
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+}
+
+input[type=text] {
+    border: 5px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+    width: 10px;
+    height: 10px;
+}
+
+#gameScreen
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000;
 	position: absolute;
 }
 
@@ -28,4 +78,63 @@ body{
 	background-color: #00ff00;
 	margin: 0;
 	position:absolute;
+}
+
+#serverKey
+{
+	height: 100px;
+  	width: 300px;
+  	background: #eee;
+  	position: absolute;
+  
+  	/*Centering Method 2*/
+  	margin: -50px 0 0 -150px;
+  	left: 50%;
+  	top: 50%;
+  	text-align: center;
+}
+
+#retry
+{
+	height: 100px;
+  	width: 300px;
+  	background: #fff;
+  	position: absolute;
+  
+  	/*Centering Method 2*/
+  	margin: -50px 0 0 -150px;
+  	left: 50%;
+  	top: 50%;
+
+}
+
+#retryButtonText
+{
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0px; 
+	margin-top: 45px;
+	position: relative;
+}
+
+#tryConnect
+{
+	height: 100px;
+  	width: 300px;
+  	background: #fff;
+  	position: absolute;
+  
+  	/*Centering Method 2*/
+  	margin: -50px 0 0 -150px;
+  	left: 50%;
+  	top: 50%;
+}
+
+#connectButtonText
+{
+	text-align: center;
+	vertical-align: middle;
+	line-height: 70px; 
+	margin: 0;
+	position: relative;
 }

@@ -3,8 +3,6 @@
   <head>
     <title>WebSocket Echo Test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.socket.io/socket.io-1.4.3.js"></script>
-
     <script type="text/javascript" src="java/morse.js">
     <script src="java/jquery-2.1.4.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -12,38 +10,49 @@
   </head>
   <body>
     
-    <div id="serverKey">
-      <form>
-        server UID:<br>
-        <input type="text" name="enter" class="enter" value="" id="uid"/>
-        <input type="button" value="click" onclick="GetUID();"/>
-      </form>
+    <div id="gameScreen">
+      <div id="key"></div>
+
+      <div id="next"></div>
     </div>
 
-    <div id="key"></div>
+    <div id = "pairingScreen">
+      <div id="serverKey">
+        <form name = "uidPair">
+          Pairing id:
+          <br>
+          <input type="text" name="uid1" class="enter" value="" onKeyUp="CheckUID1()" maxlength="1" id="uid1"/>
+          <input type="text" name="uid2" class="enter" value="" onKeyUp="CheckUID2()" maxlength="1" id="uid2"/>
+          <input type="text" name="uid3" class="enter" value="" onKeyUp="CheckUID3()" maxlength="1" id="uid3"/>
+          <input type="text" name="uid4" class="enter" value="" onKeyUp="CheckUID4()" maxlength="1" id="uid4"/>
+          <br>
+          <input type="button" value="PAIR WITH GAME" onclick="GetUID();"/>
+        </form>
+      </div>
+    </div>
 
-    <div id="next"></div>
+    <div id = "failedConnectionScreen">
+      <div id = "retry">
+        <div id = "retryButtonText">
+          <p>CONNECTION FAILED!</p>
+          <p>RETRY</p>
+        </div>
+      </div>
+    </div>
 
-    <div id="overlay"></div>
+    <div id = "connectingScreen">
+      <p>Connecting...<p>
+    </div>
 
-    
+    <div id = "introScreen">
+      <div id = "tryConnect">
+        <div id = "connectButtonText">
+          <p>CONNECT</p>
+        </div>
+      </div>
+    </div>
+
     <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
-    <script type="text/javascript">  
 
-      document.getElementById("key").addEventListener('touchstart', Down, false);
-      // document.getElementById("key").addEventListener("mousedown", Down, false);
-
-      // window.addEventListener("mouseup", Up, false);
-      window.addEventListener('touchend', Up, false);
-
-      // document.getElementById("next").addEventListener("mousedown", Next, false);
-      document.getElementById("next").addEventListener('touchstart', Next, false);
-
-      function GetUID()
-      {
-          SendUIDToServer(document.getElementById('uid').value);
-      }
-
-      </script>
   </body>
 </html>
