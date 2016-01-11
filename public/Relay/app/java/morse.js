@@ -272,7 +272,7 @@ function TryConnectToIP(ip)
           sock.close();
           sock = null;
         }
-      }, 5000);
+      }, 60000);
 
     sock.onopen = function (e) {
       if(allowingConnections && !connected)
