@@ -9,7 +9,6 @@
     </script>
   </head>
   <body>
-    <!--
     <div id="gameScreen">
       <div id="key"></div>
 
@@ -50,35 +49,7 @@
           <p>CONNECT</p>
         </div>
       </div>
-    </div>-->
-
-    <button>Send an HTTP POST request to a page and get the result back</button>
-
+    </div>
     <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
-
-    <script>
-    $(document).ready(function(){
-        $("button").click(function(){
-            $.ajax({
-              url: "process.php",
-              type: "post",
-              data      : "postForm", //Forms name
-              dataType  : 'json',
-              success   : function(data) {
-                              if (!data.success) { //If fails
-                                  if (data.errors.name) { //Returned if any error from process.php
-                                      $('.throw_error').fadeIn(1000).html(data.errors.name); //Throw relevant error
-                                  }
-                              }
-                              else {
-                                      $('#success').fadeIn(1000).append('<p>' + data.posted + '</p>'); //If successful, than throw a success message
-                                  }
-                              }
-            }); 
-        });
-    });
-    </script>
-
-    <script src="http://jsconsole.com/remote.js?FAE031CD-74A0-46D3-AE36-757BAB262BEA"></script>
   </body>
 </html>

@@ -1,23 +1,13 @@
-/*
- * echotest.js
- *
- * Derived from Echo Test of WebSocket.org (http://www.websocket.org/echo.html).
- *
- * Copyright (c) 2012 Kaazing Corporation.
- */
-
-var url = "ws://192.168.43.131:4649/Morse";
-//var url = "wss://localhost:5963/Echo";
 var output;
 var UID;
+var connected;
 var connectingButton;
 var retryButton;
-var foundServer = false;
-var connected = false;
-var connectionName = "";
-var allowingConnections = false;
 var sentUID;
 var uidInput;
+
+var address;
+var retries = 0;
 
 var introScreen;
 var connectingScreen;
@@ -26,15 +16,11 @@ var pairingScreen;
 var gameScreen;
 
 var CLOSE_MESSAGE = "Close";
-var PING_MESSAGE = "Ping";
-var PONG_MESSAGE = "Pong";
-var UID_MESSAGE = "UidMatch";
-var UID_WRONG_MESSAGE = "UidIncorrect";
-var NO_CONNECTION_MESSAGE = "NoConnection";
 var DOWN_MESSAGE = "0";
 var UP_MESSAGE = "1";
 var NEXT_MESSAGE = "2";
 var SHUTDOWN_MESSAGE = "Shutdown";
+var NO_UDID_MATCH_MESSAGE = "NoUDIDMatch";
 
 var sendUIDEvent = document.createEvent("Event");
 sendUIDEvent.initEvent("sendUID",true,true);
@@ -150,9 +136,8 @@ function StartConnection()
 
   ShowConnectingScreen();
   console.log("start connecting");
-  // TryConnectToIP("localhost");
-  allowingConnections = true;
-
+  
+  ConnectToRemoteServer();
   setTimeout(CouldntFindConnection, 60000);
 }
 
@@ -166,283 +151,154 @@ function CouldntFindConnection()
   }
 }
 
-function GetLocalIP(callback)
+function ConnectToRemoteServer()
 {
-    var ip_dups = {};
+  var ws = new WebSocket("ws://relayserver-jonsgames.rhcloud.com:8000");
 
-    //compatibility for firefox and chrome
-    var RTCPeerConnection = window.RTCPeerConnection
-        || window.mozRTCPeerConnection
-        || window.webkitRTCPeerConnection;
-    var useWebKit = !!window.webkitRTCPeerConnection;
+  ws.onopen = function() {
+    ws.send("CONNECTION-");
+  };
 
-    //bypass naive webrtc blocking using an iframe
-    if(!RTCPeerConnection){
-        //NOTE: you need to have an iframe in the page right above the script tag
-        //
-        //<iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
-        //<script>...getIPs called in here...
-        //
-        var win = iframe.contentWindow;
-        RTCPeerConnection = win.RTCPeerConnection
-            || win.mozRTCPeerConnection
-            || win.webkitRTCPeerConnection;
-        useWebKit = !!win.webkitRTCPeerConnection;
-    }
-
-    //minimal requirements for data connection
-    var mediaConstraints = {
-        optional: [{RtpDataChannels: true}]
-    };
-
-    var servers = {iceServers: [{urls: "stun:stun.services.mozilla.com"}]};
-
-    //construct a new RTCPeerConnection
-    var pc = new RTCPeerConnection(servers, mediaConstraints);
-
-    function handleCandidate(candidate){
-        //match just the IP address
-        var ip_regex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/
-        var ip_addr = ip_regex.exec(candidate)[1];
-
-        //remove duplicates
-        if(ip_dups[ip_addr] === undefined)
-            callback(ip_addr);
-
-        ip_dups[ip_addr] = true;
-    }
-
-    //listen for candidate events
-    pc.onicecandidate = function(ice){
-
-        //skip non-candidate events
-        if(ice.candidate)
-            handleCandidate(ice.candidate.candidate);
-    };
-
-    //create a bogus data channel
-    pc.createDataChannel("");
-
-    //create an offer sdp
-    pc.createOffer(function(result){
-
-        //trigger the stun server request
-        pc.setLocalDescription(result, function(){}, function(){});
-
-    }, function(){});
-
-    //wait for a while to let everything done
-    setTimeout(function(){
-        //read candidate info from local description
-        var lines = pc.localDescription.sdp.split('\n');
-
-        lines.forEach(function(line){
-            if(line.indexOf('a=candidate:') === 0)
-                handleCandidate(line);
-        });
-    }, 1000);
-}
-
-var socketConnections = [];
-var deviceIP;
-function SetIP(ip)
-{
-    if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/))
+  ws.onmessage = function (e) {
+    
+    console.log(e.data);
+    if(e.data == "Fetch UID")
     {
-        deviceIP = ip;
-        var split = ip.split(".");
-       
-        for(var i = 0; i < 255; i++)
-        {
-
-          ip = split[0] + "." + split[1] + "." + split[2] + "." + i;
-          // ip = "localhost";
-          TryConnectToIP(ip);
-        }
+      ShowPairingScreen();
     }
+    else if(e.data.indexOf("server") > -1)
+    {
+      var d = e.data.split(":");
+      address = "ws://"+d[1]+":4567/Server";
+      ws.close();
+      ShowConnectingScreen();
+      ConnectToLocalServer();
+    }
+    else if(e.data == NO_UDID_MATCH_MESSAGE)
+    {
+        ws = null;  
+        document.removeEventListener('sendUID', SendUDID, false);
+        ShowFailedConnectingScreen();
+    }
+  };
+
+  document.addEventListener('sendUID', SendUDID, false);
+
+  function SendUDID()
+  {
+    console.log("UID " + uidInput);
+      ws.send("UID:"+uidInput);
+  }
 }
 
-function TryConnectToIP(ip)
+function ConnectToLocalServer(ip)
 {
-    var sock = new WebSocket("ws://"+ip+":4649/Morse");
+  retries ++;
+  var socket = new WebSocket(address);
+  socket.onopen = function (e) {
+      console.log("connect");
+      connected = true;
+      socket.send("Connected");
+      ShowGameScreen();
+    };
 
-    console.log("trying ip " + ip);
-    setTimeout(function()
+    socket.onerror = function(e)
+    {
+      if(retries < 10)
       {
-        if(sock && !foundServer)
+        setTimeout(function()
         {
-          sock.close();
-          sock = null;
-        }
+          ResetSocket();
+          ConnectToLocalServer();
 
-        if(ip == "localhost")
-        {
-          GetLocalIP(SetIP);
-        }
-      
-      }, 3000);
-
-    sock.onopen = function (e) {
-      if(allowingConnections && !connected)
-      {
-        socketConnections.push(sock);
-        console.log("send ping to " + sock.url);
-        console.log("connected? " + connected);
-        sock.send(PING_MESSAGE+":");
-        foundServer = true;
+        },1000);
       }
       else
       {
-        sock.close();
-      }
-    };
-
-    sock.onmessage = function (e) {
-      if(!allowingConnections)
-      {
-        sock.close();
-      }
-      else
-      {
-        if(e.data == PONG_MESSAGE)
-        {
-          ShowPairingScreen();
-          console.log("connected to  " + ip);
-          foundServer = true;
-        }
-        else if(e.data == UID_MESSAGE && sentUID)
-        {
-          for(var i = 0; i < socketConnections.length; i++)
-          {
-            if(socketConnections[i].url != sock.url)
-            {
-              console.log("closing on url " + socketConnections[i].url);
-              socketConnections[i].close();
-            }
-          }
-
-          ConnectedToGameInsance();
-        }
-        else if(e.data == UID_WRONG_MESSAGE)
-        {
-          console.log("incorrect UID");
-        }
-        else if(e.data == NO_CONNECTION_MESSAGE)
-        {
-          console.log("CLOSING");
-          sock.close();
-          ResetScreens();
-        }
-        else if(e.data == SHUTDOWN_MESSAGE)
-        {
-          console.log("CLOSING");
-          sock.close();
-          ResetScreens();
-        }
-        else
-        {
-          if(connectionName == "")
-          {
-            connectionName = e.data;
-          }
-        }
-      }
-    };
-
-    sock.onerror = function (e) 
-    {
-      //if failed to connect to local host, try the other versions.
-      if(ip == "localhost")
-      {
-        GetLocalIP(SetIP);
+        ResetSocket();
+        ShowFailedConnectingScreen();
       }
     }
 
-    document.addEventListener('kill', function (e) {
-      if(sock)
+    socket.onmessage = function (e) {
+      if(SHUTDOWN_MESSAGE)
       {
-        sock.close();
-        sock = null;
+        socket.close();
+        ResetSocket();
+        ShowIntroScreen();
       }
-    }, false);
+    };
 
-    document.addEventListener('sendUID', function (e) {
-      
-      if(foundServer)
+    function ResetSocket()
+    {
+      document.removeEventListener('kill', Kill, false);
+      document.removeEventListener('sendClose', SendClose, false);
+      document.removeEventListener('sendNext', SendNext, false);
+      document.removeEventListener('sendUp', SendUp, false);
+      document.removeEventListener('sendDown', SendDown, false);
+      socket = null;
+    }
+
+    document.addEventListener('kill', Kill, false);
+    document.addEventListener('sendClose', SendClose, false);
+    document.addEventListener('sendNext', SendNext, false);
+    document.addEventListener('sendUp', SendUp, false);
+    document.addEventListener('sendDown', SendDown, false);
+
+    function Kill()
+    {
+      if(socket)
       {
-        if(sock)
-        {
-          sock.send(uidInput+":");    
-          console.log("Send UID event");
-        }
+        socket.close();
+        socket = null;
       }
-    }, false);
+    }
 
-    document.addEventListener('sendClose', function (e) {
-      if(connected)
-      {
-        if(sock)
+    function SendClose()
+    {
+      if(socket)
         {
-          sock.send(CLOSE_MESSAGE+":"+connectionName);
+          socket.send(CLOSE_MESSAGE);
           console.log("Send close event");
         }
-      }
-    }, false);
+    }
 
-    document.addEventListener('sendNext', function (e) {
-      if(connected)
-      {
-        if(sock)
+    function SendNext()
+    {
+      if(socket)
         {
-          sock.send(NEXT_MESSAGE+":"+connectionName);
+          socket.send(NEXT_MESSAGE);
           console.log("Send next event");
         }
-      }
-    }, false);
+    }
 
-    document.addEventListener('sendUp', function (e) {
-      if(connected)
-      {
-        if(sock)
+    function SendUp()
+    {
+      if(socket)
         {
-          sock.send(UP_MESSAGE+":"+connectionName);
+          socket.send(UP_MESSAGE);
           console.log("Send Up event");
         }
-      }
-    }, false);
+    }
 
-    document.addEventListener('sendDown', function (e) {
-      if(connected)
-      {
-        if(sock)
+    function SendDown()
+    {
+      if(socket)
         {
-          sock.send(DOWN_MESSAGE+":"+connectionName);
+          socket.send(DOWN_MESSAGE);
           console.log("Send Down event");
         }
-      }
-    }, false);
+    }
 
 }
 
 function ResetScreens()
 {
   ShowIntroScreen();
-  connected = false;
-  foundServer = false;
-  connectionName = "";
-}
-
-function ConnectedToGameInsance()
-{
-  ShowGameScreen();
-  console.log("connected");
-  connected = true;
-  // connection = sock;
 }
 
 function SendUIDToServer(uid)
 {
-  sentUID = true;
   uidInput = uid;
   document.dispatchEvent(sendUIDEvent);
 }
