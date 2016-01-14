@@ -24,6 +24,12 @@ github:
   repo:           https://github.com/poole/lanyon
 
 projects:
+- name: Relay
+  image: /public/images/relay.png
+  page: /projects/relay
+  - name: DROLF
+  image: /public/images/drolf.png
+  page: /projects/drolf
 - name: bubble trubble
   image: /public/images/bubbletrubble.png
   page: /projects/bubbletrubble
