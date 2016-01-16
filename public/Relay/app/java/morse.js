@@ -162,7 +162,7 @@ function StartConnection()
 
 function CouldntFindConnection()
 {
-  if(!connected && !foundServer)
+  if(!connected)
   {
     allowingConnections = false;
     ShowFailedConnectingScreen();
@@ -284,10 +284,11 @@ function ConnectToRemoteServer()
   }
 }
 
-function ConnectToLocalServer(ip)
+function ConnectToLocalServer()
 {
   retries ++;
   var socket = new WebSocket(address);
+  console.log("Open socket on: " + address);
   socket.onopen = function (e) {
       console.log("connect");
       connected = true;
@@ -300,6 +301,7 @@ function ConnectToLocalServer(ip)
     {
       if(retries < 10)
       {
+        console.log(e);
         setTimeout(function()
         {
           ResetSocket();
