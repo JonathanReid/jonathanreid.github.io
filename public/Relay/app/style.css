@@ -147,7 +147,7 @@ input[type=text] {
   	/*Centering Method 2*/
   	margin: 0px 0 0 -150px;
   	left: 50%;
-  	bottom: 10%;
+  	top: 80%;
 }
 
 .buttonText
