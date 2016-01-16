@@ -2,6 +2,18 @@ body{
 	margin: 0;
 }
 
+#title
+{
+	text-align: center;
+	position: absolute;
+	margin: 0 0 0 -150px;
+  	left: 50%;
+	color: #fff;
+	font-size: 100px;
+	top:10%;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
 #introScreen
 {
 	width: 100%;
@@ -19,6 +31,21 @@ body{
 	color:#fff;
 }
 
+#connectingScreen p
+{
+	height: 100px;
+  	width: 300px;
+  	position: absolute;
+  
+  	/*Centering Method 2*/
+  	margin: -50px 0 0 -150px;
+  	left: 50%;
+  	top: 50%;
+  	text-align: center;
+
+	font-size: 50px;
+}
+
 #failedConnectionScreen
 {
 	width: 100%;
@@ -33,24 +60,24 @@ body{
 	height: 100%;
 	background-color: #000;
 	position: absolute;
+	color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
 }
 
 input[type=text] {
-    border: 5px solid white; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    padding: 15px;
-    background: rgba(255,255,255,0.5);
+    border: 5px solid white;		
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
+    -moz-box-shadow: inset 0 0 8px rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
+    /* padding: 15px; */
+    background: rgba(0,0,0,1);
     margin: 0 0 10px 0;
-    width: 10px;
-    height: 10px;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    font-size: 34px;
+    text-align: center;
 }
 
 #gameScreen
@@ -63,19 +90,24 @@ input[type=text] {
 
 #key
 {
-	width: 100%;
-	height: 30%;
-	background-color: #ff0000;
-	margin: 0;
-	position:absolute;
-	bottom:0;
+	width: 200px;
+    height: 200px;
+    background-color: #000;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    margin: 0 0 0 -100px;
+    left: 50%;
+    bottom: 10%;
+    border-radius: 50%;
+    border: 5px solid white;
 }
 
 #next
 {
 	width: 100%;
 	height: 30%;
-	background-color: #00ff00;
+	background-color: #000;
 	margin: 0;
 	position:absolute;
 }
@@ -84,7 +116,7 @@ input[type=text] {
 {
 	height: 100px;
   	width: 300px;
-  	background: #eee;
+  	background: #000;
   	position: absolute;
   
   	/*Centering Method 2*/
@@ -94,47 +126,38 @@ input[type=text] {
   	text-align: center;
 }
 
-#retry
-{
-	height: 100px;
-  	width: 300px;
-  	background: #fff;
-  	position: absolute;
-  
-  	/*Centering Method 2*/
-  	margin: -50px 0 0 -150px;
-  	left: 50%;
-  	top: 50%;
-
-}
-
 #retryButtonText
 {
 	text-align: center;
 	vertical-align: middle;
 	line-height: 0px; 
-	margin-top: 45px;
+	margin-top: 0px;
 	position: relative;
 }
 
-#tryConnect
+
+.button
 {
 	height: 100px;
   	width: 300px;
-  	background: #fff;
+  	background: #000;
   	position: absolute;
+  	border: 5px solid white; 
   
   	/*Centering Method 2*/
-  	margin: -50px 0 0 -150px;
+  	margin: 0px 0 0 -150px;
   	left: 50%;
-  	top: 50%;
+  	bottom: 10%;
 }
 
-#connectButtonText
+.buttonText
 {
 	text-align: center;
 	vertical-align: middle;
-	line-height: 70px; 
+	line-height: 30px; 
 	margin: 0;
 	position: relative;
+	color: #fff;
+	font-size: 34px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
 }

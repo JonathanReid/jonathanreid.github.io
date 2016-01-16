@@ -9,6 +9,7 @@
     </script>
   </head>
   <body>
+
     <div id="gameScreen">
       <div id="key"></div>
 
@@ -18,22 +19,28 @@
     <div id = "pairingScreen">
       <div id="serverKey">
         <form name = "uidPair">
-          Pairing id:
+          Enter game code:
+          <br>
           <br>
           <input type="text" name="uid1" class="enter" value="" onKeyUp="CheckUID1()" maxlength="1" id="uid1"/>
           <input type="text" name="uid2" class="enter" value="" onKeyUp="CheckUID2()" maxlength="1" id="uid2"/>
           <input type="text" name="uid3" class="enter" value="" onKeyUp="CheckUID3()" maxlength="1" id="uid3"/>
           <input type="text" name="uid4" class="enter" value="" onKeyUp="CheckUID4()" maxlength="1" id="uid4"/>
           <br>
-          <input type="button" value="PAIR WITH GAME" onclick="GetUID();"/>
         </form>
       </div>
     </div>
 
+    <div id = "connectButton" class="button">
+            <div id = "connectButtonText" class="buttonText">
+              <p>GO</p>
+            </div>
+          </div>
+
     <div id = "failedConnectionScreen">
-      <div id = "retry">
-        <div id = "retryButtonText">
-          <p>CONNECTION FAILED!</p>
+      <div id = "retry" class="button">
+        <div id = "retryButtonText" class="buttonText">
+          <p>ID NOT FOUND</p>
           <p>RETRY</p>
         </div>
       </div>
@@ -44,12 +51,16 @@
     </div>
 
     <div id = "introScreen">
-      <div id = "tryConnect">
-        <div id = "connectButtonText">
-          <p>CONNECT</p>
+
+
+      <div id = "tryConnect" class="button">
+        <div id = "tryButtonText" class="buttonText">
+          <p>Connect to game</p>
         </div>
       </div>
     </div>
+
+    <div id="title">RELAY</div>
     <iframe id="iframe" sandbox="allow-same-origin" style="display: none"></iframe>
   </body>
 </html>
