@@ -288,7 +288,16 @@ function ConnectToLocalServer()
 {
   retries ++;
   var socket = new WebSocket(address);
-  console.log("Open socket on: " + address);
+  
+  setTimeout(function()
+  {
+    if(!connected)
+    {
+      ResetSocket();
+      ConnectToLocalServer();
+    }
+  },4000);
+
   socket.onopen = function (e) {
       console.log("connect");
       connected = true;
