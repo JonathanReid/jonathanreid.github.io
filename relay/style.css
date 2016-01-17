@@ -31,6 +31,12 @@ body{
 #connectingScreen p {
 	margin: 0;
 }
+
+#connectingScreen img {
+	width: 100px;
+	height: 100px;
+}
+
 input[type=text] {
     border: 5px solid white;
     -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
@@ -83,6 +89,7 @@ input[type=text] {
 		margin: 0 auto;
   	top: 50%;
   	text-align: center;
+  	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
 }
 
 #retryButtonText

@@ -115,8 +115,6 @@ function ShowConnectingScreen()
   pairingScreen.style.display = "none";
   gameScreen.style.display = "none";
   connectButton.style.display = "none";
-
-  PlayConnectingAnimation();
 }
 
 function ShowFailedConnectingScreen()
@@ -168,77 +166,6 @@ function CouldntFindConnection()
     ShowFailedConnectingScreen();
     document.dispatchEvent(killConnectionEvent);
   }
-}
-
-function PlayConnectingAnimation()
-{
-  connectingScreen.innerHTML = "<p>...</p>";
-  /*
-  var text = ["-.-.","---","-.","-.",".","-.-.","-","..","-.","--."];
-  var index = 0;
-  var charIndex = 0;
-  var letter = "";
-  var currentChar = text[index];
-
-  DisplayLetter();
-
-  function DisplayLetter()
-  {
-    letter += currentChar.charAt(charIndex);
-
-    connectingScreen.innerHTML = "<p>" + letter +"</p>";
-
-    charIndex ++;
-    if(charIndex >= currentChar.length)
-    {
-      DisplayNextLetter();
-    }
-    else
-    {
-      var time = 250;
-      if(currentChar.charAt(charIndex-1) == "-")
-      {
-        time = 500;
-      }
-      setTimeout(function()
-      {
-        DisplayLetter();
-
-      },time);
-    }
-  }
-
-  function DisplayNextLetter()
-  {
-    letter = "";
-
-    index ++;
-    var time = 500;
-    if(index >= text.length)
-    {
-      index = 0;
-      time = 1000;
-    }
-
-    currentChar = text[index];
-    charIndex = 0;
-
-    setTimeout(function()
-    {
-      Pause();
-
-    },time);
-  }
-
-  function Pause()
-  {
-    connectingScreen.innerHTML = "";
-    setTimeout(function()
-    {
-      DisplayLetter();
-
-    },500);
-  }*/
 }
 
 function ConnectToRemoteServer()
