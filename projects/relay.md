@@ -2,8 +2,26 @@
 layout: page
 title: Relay
 role: Developer/Artist/Designer - personal
-platform: WebGL - Unity
+platform: Windows/Mac/Linux - Unity
 ---
+
+({{ site.baseurl }}/public/images/relay/image1.jpg "Relay")
+
+In 1914, the world engaged in a war unlike any other. No one was prepared for what was about to happen. 
+
+Relay tells the story of a British morse code technician during WW1, engaging in some of the key battles and stories from the time. Your job is to keep headquaters up to date each day with news, important events and to look after your platoons recources. Without food, your men go hungry. Without ammo, they cant fight. 
+
+Each message you send back to headquaters is through morse code, and with your trusty manual, you'll be able to make it home for christmas. At least thats what everyone keeps saying. 
+
+Relay focuses on the routine and monotony that was prevelant during sections of WW1. Towards the end of 1914 saw a stalemate on the eastern front, where neither sides moved. Most soldiers ended up fighting off boredom rather than attacks. Alongside this routine, there are key moments and battles that are used throughout Relay, telling the story of war not from the traditional hero that charges across the battle field unsolicited, but from one whos daily tasks and routine were more vital to the war effort than most think of.
+
+Relay began as a Ludum dare 34 entry, where it ranked highly. It got good press, but focused entirely on the 1914 truce. A story most people are familiar with. This version of Relay, however, does not take such a warm look back on WW1. While the truce does remain, other sections of the great war are used as well. While doing research for this game, I read about how WW1 had the first use of chemical warefare, and, as it turns out, was only a few days after the famous Christmas Truce. 
+
+I've also expanded more on the gameplay, instead of just tapping out pre written notes that are given to you, you have much more agency over every answer. You are asked questions instead, allowing you to rummage through a stack of papers searching for the answer, which there could be several depending on the day.
+
+Alongside that, there is your secondary job, to filter out soldiers mail. This was common during WW1 as military secrets could easily be leaked by soldiers on the front line writing home to their families. You have to ensure no secrets are shared each day, other wise the consequences fall right back to you.
+
+LUDUM DARE ENTRY
 
 <iframe width="720" height="400" src="https://www.youtube.com/embed/dr5cJkPcAmQ" frameborder="0" allowfullscreen></iframe>
 
