@@ -36,5 +36,5 @@ A big part of this game was to push myself visually, usually I fall back to a ce
 I personally really like this idea, and I am creating a full version, complete with real life telegraph key for inputs! Expect to see more of this game.
 
 <center>
-[Play the Ludum Dare version now!](http://jonreid.itch.io/relay) 
+	<a href="http://jonreid.itch.io/relay">Play the Ludum Dare version now!</a>
 </center>
