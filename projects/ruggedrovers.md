@@ -14,7 +14,7 @@ The installation also allows players on mobile devices to join in, as players in
 Rugged Rovers was built with Unity and is on iOS, Android, Web and microsoft surface.
 
 <center>
-[Play Rugged Rovers now!](http://www.sciencemuseum.org.uk/online_science/games/rugged-rovers.aspx) 
+<a href="http://www.sciencemuseum.org.uk/online_science/games/rugged-rovers.aspx">Play Rugged Rovers now!</a>
 </center>
 
 Watch a short video about the exhibition:
