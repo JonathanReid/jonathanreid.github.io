@@ -14,5 +14,5 @@ As players explore rich and detailed environments they encounter Soldier ants fr
 My development role consisted of implementing UI across all screens, implementing the nodal navigation system, AI and camerawork. I have since gone on to lead development of product updates.
 
 <center>
-[Find out more about TyrAnt](http://preloaded.com/games/tyrant/) 
+<a href="http://preloaded.com/games/tyrant/">Find out more about TyrAnt</a>
 </center>

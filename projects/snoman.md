@@ -14,5 +14,5 @@ platform: Unity web player
 Admittedly, this game is far too hard to really be played or enjoyed, but it was a fun experiment in creating a small game quickly. I learned a lot about designing hard controls, and that its very easy to take it too far beyond fun self hate into frustration about the game being unfair.
 
 <center>
-[Play SNOMAN now!](http://www.kongregate.com/games/TheCoderMonkey/snoman) 
+<a href="http://www.kongregate.com/games/TheCoderMonkey/snoman">Play SNOMAN now!</a>
 </center>

@@ -14,5 +14,5 @@ platform: PuzzleScript
 I found PuzzleScript to be a very good engine and language for prototyping grid based puzzle games. You can do an awful lot very quickly, and even create some very complex behaviors. 
 
 <center>
-[Play Honey Giants now!](http://www.puzzlescript.net/play.html?p=8cbe871f8c0d59fab93b) 
+<a href="http://www.puzzlescript.net/play.html?p=8cbe871f8c0d59fab93b">Play Honey Giants now!</a>
 </center>

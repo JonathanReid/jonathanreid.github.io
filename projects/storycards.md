@@ -15,5 +15,5 @@ The game is turn based, with each player placing cards into card slots in an att
 While developing this game, I worked closely with Game Design to help create a deep and strategic card game that has both longevity and scalability. My development role consisted of implementing all screens and VFX as well as assisting multiplayer architecture. I have since gone on to lead product updates for Story Cards. 
 
 <center>
-[Find out more about Story Cards](http://preloaded.com/games/story-cards/) 
+<a href="http://preloaded.com/games/story-cards/">Find out more about Story Cards</a>
 </center>

@@ -20,7 +20,7 @@ As well as inputs, I had also rigged up a system of RBG lights that changes colo
 The headset used was originally a Star Wars toy that was taken apart and customised to run through an arduino to get the data. As the project progressed, I ended up buying a neuro sky headset to get more accurate data from the wearer.
 
 <center>
-[Read more about Spaced Out on its development blog](https://jonsfmp.wordpress.com/) 
+<a href="https://jonsfmp.wordpress.com/">Read more about Spaced Out on its development blog</a>
 </center>
 
 ![spaced out]({{ site.baseurl }}/public/images/spacedout/spacedout1.jpg "spaced out")

@@ -12,5 +12,5 @@ platform: Flash
 Lets Click and Makeup is set around a man who is late for his hot date, but his door is broken and he has lost his trousers, can you help him figure out a way to get to his date and still look snazzy?
 
 <center>
-[Play Lets Click and Makeup now!](http://www.kongregate.com/games/TheCoderMonkey/lets-click-and-makeup) 
+<a href="http://www.kongregate.com/games/TheCoderMonkey/lets-click-and-makeup">Play Lets Click and Makeup now!</a>
 </center>

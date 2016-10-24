@@ -50,5 +50,5 @@ private void BuildCircle(float radius)
 All shapes return the Shape class, which help you track, and rebuild your geometry if you need to.
 
 <center>
-[Download Mesh Tools on GitHub](https://github.com/JonathanReid/MeshTools) 
+<a href="https://github.com/JonathanReid/MeshTools">Download Mesh Tools on GitHub</a>
 </center>

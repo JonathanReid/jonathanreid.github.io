@@ -16,7 +16,7 @@ Adventure with Yellow block over the course of a year as he searches for his wif
 "The simple but lovely aesthetics and the fact that many of the puzzles have multiple possible solutions make the game suitable for all ages and skill levels." - [Indie Games](http://indiegames.com/2014/07/ios_pick_love_connection_a_col.html)
 
 <center>
-[Buy Love Connection now!](https://itunes.apple.com/gb/app/id889736798) 
+<a href="https://itunes.apple.com/gb/app/id889736798">Buy Love Connection now!</a>
 </center>
 
 <a href="https://itunes.apple.com/gb/app/id889736798">![Love Connection]({{ site.baseurl }}/public/images/loveconnection/image1.png "Love Connection")</a>

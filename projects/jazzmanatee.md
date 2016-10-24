@@ -15,5 +15,5 @@ Art was created by [Chris Cox.](https://twitter.com/papercaves)
 Music by [Fiona Byrne.](https://twitter.com/mittencloth)
 
 <center>
-[Play Jazz Manatee now!](http://aliveis.preloaded.com/static/microjam/JazzManatee/) 
+<a href="http://aliveis.preloaded.com/static/microjam/JazzManatee/">Play Jazz Manatee now!</a>
 </center>

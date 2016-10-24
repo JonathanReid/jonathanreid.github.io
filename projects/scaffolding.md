@@ -40,5 +40,5 @@ SendDataToView<MyPauseOverlay>();
 For more examples, check out the demo scenes in the repository.
 
 <center>
-[Download Scaffolding on GitHub](https://github.com/JonathanReid/Scaffolding) 
+<a href="https://github.com/JonathanReid/Scaffolding">Download Scaffolding on GitHub</a>
 </center>
