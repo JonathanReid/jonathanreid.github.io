@@ -7,6 +7,8 @@ platform: Windows/Mac/Linux - Unity
 
 ![Relay]({{ site.baseurl }}/public/images/relay/image1.jpg "Relay")
 
+<a href="http://steamcommunity.com/sharedfiles/filedetails/?id=785355865">Relay is on Steam Greenlight now!</a>
+
 Relay is a morse code based game for desktop, arriving early 2017.
 
 In 1914, the world engaged in a war unlike any other. No one was prepared for what was about to happen.
