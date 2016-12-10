@@ -1,0 +1,13 @@
+<files>
+
+  <file id="char" path="assets/images/char.png" type="PNG" />
+  <file id="room" path="assets/images/bg.png" type="PNG" />
+  <file id="tree" path="assets/images/tree.png" type="PNG" />
+  <file id="futureTree" path="assets/images/futureTree.png" type="PNG" />
+  <file id="rope" path="assets/images/rope.png" type="PNG" />
+  <file id="ropeIcon" path="assets/images/ropeIcon.png" type="PNG" />
+  <file id="emptyIconSlot" path="assets/images/emptyIconSlot.png" type="PNG" />
+  <file id="pixelFont" path="assets/font/minecraft-font/minecraft-font.png" type="BMP_FONT" />
+  <file id="ui" path="assets/spritesheets/ui/ui.png" type="ATLAS" />
+
+</files>
