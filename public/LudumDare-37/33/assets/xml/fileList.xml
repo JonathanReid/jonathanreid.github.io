@@ -1,0 +1,45 @@
+<files>
+
+  <file id="char" path="assets/spritesheets/character/character.png" type="ATLAS" />
+  <file id="room" path="assets/images/bg.png" type="PNG" />
+  <file id="tree" path="assets/spritesheets/tree/tree.png" type="ATLAS" />
+  <file id="treeLights" path="assets/images/tree-lights.png" type="PNG" />
+  <file id="treeBaubles" path="assets/images/tree-baubles.png" type="PNG" />
+  <file id="treeLightsBaubles" path="assets/images/tree-lights-baubles.png" type="PNG" />
+  <file id="futureTree" path="assets/images/futureTree.png" type="PNG" />
+  <file id="futureTreeFire" path="assets/images/futureTreeFire.png" type="PNG" />
+  <file id="rope" path="assets/images/rope.png" type="PNG" />
+  <file id="ropeIcon" path="assets/images/ropeIcon.png" type="PNG" />
+
+  <file id="key" path="assets/images/key.png" type="PNG" />
+
+  <file id="oil" path="assets/images/oil.png" type="PNG" />
+  <file id="oilIcon" path="assets/images/oilIcon.png" type="PNG" />
+
+  <file id="beard" path="assets/images/beard.png" type="PNG" />
+  <file id="beardIcon" path="assets/images/beardIcon.png" type="PNG" />
+
+  <file id="oilyBeardIcon" path="assets/images/oilyBeardIcon.png" type="PNG" />
+
+  <file id="bird" path="assets/spritesheets/bird/hitTree.png" type="ATLAS" />
+
+  <file id="baubel" path="assets/images/baubel.png" type="PNG" />
+
+  <file id="window" path="assets/spritesheets/window/window.png" type="ATLAS" />
+
+  <file id="box" path="assets/images/box.png" type="PNG" />
+  <file id="boxOpen" path="assets/images/boxOpen.png" type="PNG" />
+  <file id="boxUnlocked" path="assets/images/boxUnlocked.png" type="PNG" />
+
+  <file id="decorations" path="assets/images/decorations.png" type="PNG" />
+  <file id="decorationsIcon" path="assets/images/decorationsIcon.png" type="PNG" />
+  <file id="decorationsEmpty" path="assets/images/decorationsEmpty.png" type="PNG" />
+
+  <file id="door" path="assets/images/door.png" type="PNG" />
+  <file id="hangingDecorations" path="assets/images/hangingDecorations.png" type="PNG" />
+
+  <file id="emptyIconSlot" path="assets/images/emptyIconSlot.png" type="PNG" />
+  <file id="pixelFont" path="assets/font/minecraft-font/minecraft-font.png" type="BMP_FONT" />
+  <file id="ui" path="assets/spritesheets/ui/ui.png" type="ATLAS" />
+
+</files>
