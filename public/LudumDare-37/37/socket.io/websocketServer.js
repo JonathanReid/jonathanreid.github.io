@@ -44,7 +44,7 @@ function createConnection()
   }
 
   this.worker = new Worker('worker.js');
-  let context = this;
+  var context = this;
   this.worker.onmessage = function(event)
   {
     context.updateData();
