@@ -1,0 +1,52 @@
+{"frames": [
+
+{
+	"filename": "playbutton1.png",
+	"frame": {"x":403,"y":1,"w":70,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":44},
+	"sourceSize": {"w":70,"h":44}
+},
+{
+	"filename": "playbutton2.png",
+	"frame": {"x":475,"y":1,"w":70,"h":39},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":70,"h":39},
+	"sourceSize": {"w":70,"h":44}
+},
+{
+	"filename": "replaybutton1.png",
+	"frame": {"x":403,"y":47,"w":70,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":44},
+	"sourceSize": {"w":70,"h":44}
+},
+{
+	"filename": "replaybutton2.png",
+	"frame": {"x":475,"y":42,"w":70,"h":39},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":70,"h":39},
+	"sourceSize": {"w":70,"h":44}
+},
+{
+	"filename": "title1.png",
+	"frame": {"x":1,"y":1,"w":400,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":400,"h":98},
+	"sourceSize": {"w":400,"h":98}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ui.png",
+	"format": "RGBA8888",
+	"size": {"w":546,"h":100},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b5fcc4f1f7620a3df1167ed02a05c1ab:eaf67304b0554a52c922972ac14b0aeb:5b04aa198265472a3c5f56958d78e97b$"
+}
+}
