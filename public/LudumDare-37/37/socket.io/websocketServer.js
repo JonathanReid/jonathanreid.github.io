@@ -9,6 +9,7 @@ var messages = [];
 var waitingForPlayerTwo = false;
 var readyToStart = false;
 var gameReadyEvent;
+var removeGameMessaged = false;
 
 window.onbeforeunload = function(e) {
 closeConnection();
@@ -50,6 +51,16 @@ function createConnection()
     context.updateData();
   };
 
+}
+
+function startWorker()
+{
+  removeGameMessaged = true;
+}
+
+function stopWorker()
+{
+  removeGameMessaged = false;
 }
 
 function reset()
@@ -101,10 +112,13 @@ function recievedData(data)
   if(waitingForPlayerTwo && data === SLOT_TWO)
   {
     beginGame();
+    recievedEvent(data);
   }
   else if(data == "RESET")
   {
     fireEvent("gameResetEvent");
+    stopWorker();
+    recievedEvent(data);
   }
   else {
       // console.log("RECEIVED DATA:: " + data);
@@ -144,8 +158,30 @@ function updateData()
   {
     if(data.length > 0)
     {
-      var msg = data[0];
-      recievedData(msg);
+      for(var i = 0; i < data.length; ++i)
+      {
+        var msg = data[i];
+        recievedData(msg);
+        if(removeGameMessaged)
+        {
+
+        }
+
+        // data.splice(0,1);
+        // localStorage.setItem(CURRENT_SLOT+"_DATA",JSON.stringify(data));
+      }
+    }
+  }
+}
+
+function recievedEvent(msg)
+{
+  var data = JSON.parse(localStorage.getItem(CURRENT_SLOT+"_DATA"));
+  for(var i = 0; i < data.length; ++i)
+  {
+    var m = data[i];
+    if(m == msg)
+    {
       data.splice(0,1);
       localStorage.setItem(CURRENT_SLOT+"_DATA",JSON.stringify(data));
     }

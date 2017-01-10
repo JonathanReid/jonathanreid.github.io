@@ -158,7 +158,7 @@ function updateData()
   {
     if(data.length > 0)
     {
-      for(let i = 0; i < data.length; ++i)
+      for(var i = 0; i < data.length; ++i)
       {
         var msg = data[i];
         recievedData(msg);
@@ -177,12 +177,11 @@ function updateData()
 function recievedEvent(msg)
 {
   var data = JSON.parse(localStorage.getItem(CURRENT_SLOT+"_DATA"));
-  for(let i = 0; i < data.length; ++i)
+  for(var i = 0; i < data.length; ++i)
   {
     var m = data[i];
     if(m == msg)
     {
-      console.log("RECEIVED " + msg);
       data.splice(0,1);
       localStorage.setItem(CURRENT_SLOT+"_DATA",JSON.stringify(data));
     }
