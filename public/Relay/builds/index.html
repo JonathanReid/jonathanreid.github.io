@@ -1,0 +1,60 @@
+<html>
+
+<style type="text/css">
+
+body
+{
+	font-family: gillSans
+}
+
+div
+{
+	display: inline-block;
+}
+
+</style>
+
+<script type="text/javascript">
+
+function getText(){
+    // read text from URL location
+    var request = new XMLHttpRequest();
+    request.open('GET', 'http://www.jonsgames.com/public/Relay/builds/buildInfo.txt', true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader('Content-Type');
+            if (type.indexOf("text") !== 1) {
+                return request.responseText;
+            }
+        }
+    }
+}
+
+var buildInfo = getText().split('\n');
+
+var win = document.getElementById("windowsBuild");
+win.innerHTML = "<a href='"+buildInfo[2]+"'>Windows</a>";
+
+var mac = document.getElementById("macBuild");
+mac.innerHTML = "<a href='"+buildInfo[1]+"'>Mac</a>";
+
+var buildNumber = document.getElementById("buildNumber");
+buildNumber.innerHTML = buildInfo[0];
+
+</script>
+
+<body>
+
+<center>
+
+<h1> RELAY: LATEST BUILDS </h1>
+<div id="buildNumber"><h2> Build #?? </h2></div>
+
+
+<div id="windowsBuild">Windows</div> | <div id="macBuild">Mac</div>
+</center>
+
+</body>
+
+</html>
