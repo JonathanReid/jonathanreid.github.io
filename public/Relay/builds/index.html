@@ -12,7 +12,7 @@ div
 	display: inline-block;
 }
 
-div .buildNumber
+div#buildNumber
 {
 	display: inherit;
 }
@@ -39,7 +39,7 @@ function getText(){
 				mac.innerHTML = "<a href='"+buildInfo[1]+"'>Mac</a>";
 
 				var buildNumber = document.getElementById("buildNumber");
-				buildNumber.innerHTML = buildInfo[0];
+				buildNumber.innerHTML = "<h2>"+buildInfo[0]+"</h2>";
             }
         }
     }
