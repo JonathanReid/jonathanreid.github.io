@@ -1,0 +1,3 @@
+Build Number XX
+www.jonsgames.com/public/Relay/XX/Relay-Mac.zip
+www.jonsgames.com/public/Relay/XX/Relay-Windows.zip
