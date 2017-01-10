@@ -12,6 +12,11 @@ div
 	display: inline-block;
 }
 
+div#buildNumber
+{
+	display: inherit;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -19,28 +24,28 @@ div
 function getText(){
     // read text from URL location
     var request = new XMLHttpRequest();
-    request.open('GET', 'http://www.jonsgames.com/public/Relay/builds/buildInfo.txt', true);
+    request.open('GET', '/public/Relay/builds/buildInfo.txt', true);
     request.send(null);
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
             var type = request.getResponseHeader('Content-Type');
             if (type.indexOf("text") !== 1) {
-                return request.responseText;
+                var buildInfo = request.responseText.split('\n');
+
+				var win = document.getElementById("windowsBuild");
+				win.innerHTML = "<a href='"+buildInfo[2]+"'>Windows</a>";
+
+				var mac = document.getElementById("macBuild");
+				mac.innerHTML = "<a href='"+buildInfo[1]+"'>Mac</a>";
+
+				var buildNumber = document.getElementById("buildNumber");
+				buildNumber.innerHTML = "<h2>"+buildInfo[0]+"</h2>";
             }
         }
     }
 }
 
-var buildInfo = getText().split('\n');
-
-var win = document.getElementById("windowsBuild");
-win.innerHTML = "<a href='"+buildInfo[2]+"'>Windows</a>";
-
-var mac = document.getElementById("macBuild");
-mac.innerHTML = "<a href='"+buildInfo[1]+"'>Mac</a>";
-
-var buildNumber = document.getElementById("buildNumber");
-buildNumber.innerHTML = buildInfo[0];
+getText();
 
 </script>
 
